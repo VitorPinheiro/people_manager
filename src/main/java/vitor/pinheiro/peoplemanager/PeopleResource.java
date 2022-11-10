@@ -45,6 +45,6 @@ public class PeopleResource {
     @DeleteMapping("/delete/{_id}")
     public ResponseEntity<?> deletePerson(@PathVariable("_id") Long id){
         _peopleService.deletePerson(id);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
