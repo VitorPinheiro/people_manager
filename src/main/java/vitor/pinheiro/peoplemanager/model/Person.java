@@ -35,6 +35,7 @@ public class Person implements Serializable {
         _firstName = firstName;
         _fullName = fullName;
         _imageUrl = null;
+
         _lastVibration = lastVibration;
     }
 

@@ -3,9 +3,11 @@ package vitor.pinheiro.peoplemanager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vitor.pinheiro.peoplemanager.model.PeopleSortingComparator;
 import vitor.pinheiro.peoplemanager.model.Person;
 import vitor.pinheiro.peoplemanager.service.PeopleService;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -21,6 +23,7 @@ public class PeopleResource {
     @GetMapping("/all")
     public ResponseEntity<List<Person>> getAllPeople() {
         List<Person> people = _peopleService.findAllPeople();
+        Collections.sort(people, new PeopleSortingComparator());
         return new ResponseEntity<>(people, HttpStatus.OK);
     }
 

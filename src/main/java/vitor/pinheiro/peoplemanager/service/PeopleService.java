@@ -2,6 +2,7 @@ package vitor.pinheiro.peoplemanager.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import vitor.pinheiro.peoplemanager.exception.PersonNotFoundException;
 import vitor.pinheiro.peoplemanager.model.Person;
 import vitor.pinheiro.peoplemanager.repository.PeopleRepository;
@@ -18,8 +19,6 @@ public class PeopleService {
     }
 
     public Person addPerson(Person person) {
-        person.set_lastVibration(null);
-        person.set_imageUrl(null);
         return _peopleRepository.save(person);
     }
 
@@ -36,6 +35,7 @@ public class PeopleService {
                 .orElseThrow(() -> new PersonNotFoundException("Person by id "+ id+ " was not found."));
     }
 
+    @Transactional
     public void deletePerson(Long id) {
         _peopleRepository.deletePersonBy_id(id);
     }
